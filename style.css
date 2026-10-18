@@ -120,3 +120,6 @@ dialog.dialog-fallback:not([open]){display:none}
 dialog.dialog-fallback[open]{position:fixed;top:50%;left:50%;right:auto;bottom:auto;transform:translate(-50%,-50%);margin:0;z-index:1001;max-height:calc(100vh - 32px);overflow:auto;box-shadow:0 0 0 100vmax #08243ccc,0 15px 70px #0006}
 body.fallback-modal-open{overflow:hidden}
 #how-to-play.dialog-fallback[open]{max-height:calc(100vh - 32px)}
+
+.brand-icon{display:block;width:46px;height:46px;object-fit:contain;flex-shrink:0}
+@media(max-width:700px){.brand-icon{width:37px;height:37px}.info-page .brand-icon{width:34px;height:34px}}

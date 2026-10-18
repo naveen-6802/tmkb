@@ -1,9 +1,5 @@
-/* Keep deployment URLs local and essential setup independent of game startup. */
+/* Keep essential setup independent of game startup. Canonicals are static in HTML. */
 (function(){
- var here=window.location.href.split('#')[0].split('?')[0];
- var canonical=document.querySelector('link[rel="canonical"]');if(canonical)canonical.href=here;
- var og=document.querySelector('meta[property="og:url"]');if(!og){og=document.createElement('meta');og.setAttribute('property','og:url');document.head.appendChild(og)}og.setAttribute('content',here);
- var structured=document.querySelector('script[type="application/ld+json"]');if(structured){try{var data=JSON.parse(structured.textContent);data.url=here;structured.textContent=JSON.stringify(data)}catch(e){}}
  var open=document.getElementById('open-setup'),close=document.getElementById('close-setup'),panel=document.getElementById('setup-panel');
  if(open&&panel){
   open.onclick=function(){
