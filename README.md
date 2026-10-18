@@ -1,13 +1,32 @@
-# Chessroom Website
+# Chessroom: complete GitHub-ready website
 
-Complete static website, including the chess game, information pages, sounds generated in JavaScript, fonts, backgrounds and How to Play popup.
+## Deploy
+Replace ALL files from the previous ZIP with this folder's files. Keep index.html at the published root. For GitHub Pages, select the branch/folder containing index.html in Settings > Pages. Keep .nojekyll too. No npm, API keys, or build step is required.
 
-## Run
-Extract this ZIP and open index.html. For a local web server, run `python -m http.server 8000` in this folder, then visit http://localhost:8000.
+If you enabled a custom domain, configure that in GitHub Pages. This ZIP contains no CNAME file and no redirect to the previous host. Internal navigation uses relative paths, so GitHub project subfolders work too.
 
-## Host
-Upload these files to your static website host with index.html at the website root. No build step, package installation or API key is required.
+## iOS fixes
+- Removed Array.at dependencies from game initialization and move history.
+- Play Now setup opens independently of game startup and does not depend on focus options.
+- Added legacy Safari media-query listeners and dialog fallbacks.
+- Versioned CSS/JavaScript links avoid using earlier cached copies.
 
-Before moving to your own domain, update canonical URLs, Open Graph URLs, robots.txt and sitemap.xml to use that domain. Add your public support email to contact.html; the current page indicates that contact details are pending.
+## Domain and SEO
+The old host's absolute URLs have been removed. Canonical/social URLs follow the current page at runtime. For static SEO metadata and a valid sitemap, run this optional command BEFORE uploading (replace with your actual website URL):
 
-Game progress is stored in the browser. The ZIP does not include saved player games.
+    python configure-domain.py https://your-domain.example/
+
+For a GitHub Pages project site, include its project path:
+
+    python configure-domain.py https://username.github.io/repository/
+
+The script generates sitemap.xml and updates robots.txt plus page metadata. No guessed domain is included in this ZIP.
+
+## Run locally
+    python -m http.server 8000
+Open http://localhost:8000.
+
+## Notes
+All game files, pages, fonts, backgrounds, popup guide, and sounds are included. Contact Us still needs your public support email. Saved games remain in browser storage and are not included in this ZIP.
+
+Checks cover JavaScript startup without Array.at, legacy media-query support, setup open/close, link paths and ZIP integrity. An actual iPhone/Safari visual test was not available.

@@ -10,7 +10,7 @@ try{let x=JSON.parse(localStorage.getItem('chessroom-classic-v1'));if(x){game.re
 function render(){if(mode==='computer')flipped=playerColor==='b';
  document.body.classList.toggle('shared-turn-view',mode==='local');
  document.body.classList.toggle('turn-facing-away',mode==='local'&&game.turn!==(flipped?'b':'w'));
- legal=game.moves();let st=game.status(),last=game.history.at(-1)?.move;let html='';for(let n=0;n<64;n++){let i=flipped?63-n:n,p=game.b[i],target=legal.some(m=>m.f===selected&&m.t===i);html+=`<button class="sq ${( (i>>3)+i%8)%2?'shade':''} ${i===selected?'selected':''} ${last&&(i===last.f||i===last.t)?'last':''} ${i===hintSquare?'hint':''} ${st==='check'&&p===(game.turn==='w'?'K':'k')?'check':''}" data-i="${i}" role="gridcell" aria-label="${sq(i)}${p!=='.'?' '+(side(p)==='w'?'white ':'black ')+names[p.toLowerCase()]:''}${target?', legal destination':''}" aria-selected="${i===selected}">${p!=='.'?piece(p):''}${target?`<span class="dot ${p!=='.'?'capture':''}"></span>`:''}${n>=56?`<span class="coord">${sq(i)[0]}</span>`:''}${n%8===0?`<span class="coord rank">${sq(i)[1]}</span>`:''}</button>`}$('board').innerHTML=html;let who=game.turn==='w'?'White':'Black';$('status').textContent=st==='checkmate'?`${who==='White'?'Black':'White'} wins`:st==='stalemate'?'Stalemate':st==='draw'?'A well-played draw':busy?'Chessroom is thinking…':`${who} to move${st==='check'?' · check':''}`;$('message').textContent=st==='checkmate'?'Checkmate. A good moment for another game.':st==='draw'||st==='stalemate'?'The game is drawn. Try a new opening?':st==='check'?'Your king needs a little attention.':busy?'Finding a little possibility on the board.':selected<0?'Select a piece. Find your next possibility.':'Highlighted squares show your legal moves.';$('blacklight').classList.toggle('on',game.turn==='b');$('whitelight').classList.toggle('on',game.turn==='w');$('opponent').textContent=mode==='computer'?'chessroom':'Player two';$('opdetail').textContent=mode==='computer'?'A friendly challenge':'Same board. Good company.';$('you').textContent=mode==='computer'?'You':'Player one';$('computer').classList.toggle('selected',mode==='computer');$('local').classList.toggle('selected',mode==='local');$('levelwrap').style.display=mode==='computer'?'block':'none';$('levelname').textContent=['Easy','Medium','Hard'][$('level').value-1];$('count').textContent=Math.ceil(game.history.length/2)+' MOVES';if(game.history.length){let html='';for(let i=0;i<game.history.length;i+=2)html+=`<div class="move-row"><span>${i/2+1}.</span><span>${notation(game.history[i])}</span><span>${game.history[i+1]?notation(game.history[i+1]):'-'}</span></div>`;$('moves').innerHTML=html;$('moves').scrollTop=$('moves').scrollHeight}else $('moves').innerHTML='<div class="empty"><span>↗</span><b>A fresh perspective.</b><p>Select a piece to see where it can go.</p></div>';syncDifficulty();syncPlayerColors();save();syncResult(st)}
+ legal=game.moves();let st=game.status(),last=game.history[game.history.length-1]?.move;let html='';for(let n=0;n<64;n++){let i=flipped?63-n:n,p=game.b[i],target=legal.some(m=>m.f===selected&&m.t===i);html+=`<button class="sq ${( (i>>3)+i%8)%2?'shade':''} ${i===selected?'selected':''} ${last&&(i===last.f||i===last.t)?'last':''} ${i===hintSquare?'hint':''} ${st==='check'&&p===(game.turn==='w'?'K':'k')?'check':''}" data-i="${i}" role="gridcell" aria-label="${sq(i)}${p!=='.'?' '+(side(p)==='w'?'white ':'black ')+names[p.toLowerCase()]:''}${target?', legal destination':''}" aria-selected="${i===selected}">${p!=='.'?piece(p):''}${target?`<span class="dot ${p!=='.'?'capture':''}"></span>`:''}${n>=56?`<span class="coord">${sq(i)[0]}</span>`:''}${n%8===0?`<span class="coord rank">${sq(i)[1]}</span>`:''}</button>`}$('board').innerHTML=html;let who=game.turn==='w'?'White':'Black';$('status').textContent=st==='checkmate'?`${who==='White'?'Black':'White'} wins`:st==='stalemate'?'Stalemate':st==='draw'?'A well-played draw':busy?'Chessroom is thinking…':`${who} to move${st==='check'?' · check':''}`;$('message').textContent=st==='checkmate'?'Checkmate. A good moment for another game.':st==='draw'||st==='stalemate'?'The game is drawn. Try a new opening?':st==='check'?'Your king needs a little attention.':busy?'Finding a little possibility on the board.':selected<0?'Select a piece. Find your next possibility.':'Highlighted squares show your legal moves.';$('blacklight').classList.toggle('on',game.turn==='b');$('whitelight').classList.toggle('on',game.turn==='w');$('opponent').textContent=mode==='computer'?'chessroom':'Player two';$('opdetail').textContent=mode==='computer'?'A friendly challenge':'Same board. Good company.';$('you').textContent=mode==='computer'?'You':'Player one';$('computer').classList.toggle('selected',mode==='computer');$('local').classList.toggle('selected',mode==='local');$('levelwrap').style.display=mode==='computer'?'block':'none';$('levelname').textContent=['Easy','Medium','Hard'][$('level').value-1];$('count').textContent=Math.ceil(game.history.length/2)+' MOVES';if(game.history.length){let html='';for(let i=0;i<game.history.length;i+=2)html+=`<div class="move-row"><span>${i/2+1}.</span><span>${notation(game.history[i])}</span><span>${game.history[i+1]?notation(game.history[i+1]):'-'}</span></div>`;$('moves').innerHTML=html;$('moves').scrollTop=$('moves').scrollHeight}else $('moves').innerHTML='<div class="empty"><span>↗</span><b>A fresh perspective.</b><p>Select a piece to see where it can go.</p></div>';syncDifficulty();syncPlayerColors();save();syncResult(st)}
 function notation(h){let m=h.move;return m.castle?(m.t>m.f?'O-O':'O-O-O'):(h.piece.toLowerCase()==='p'?'':h.piece.toUpperCase())+sq(m.f)+(h.capture?'×':'–')+sq(m.t)+(m.p?'='+m.p.toUpperCase():'')}
 function toast(t){$('toast').textContent=t;$('toast').classList.add('show');setTimeout(()=>$('toast').classList.remove('show'),2400)}
 let audioContext;
@@ -63,7 +63,7 @@ function animateMove(m){
   const clean=()=>{ghost.remove();to.style.opacity='';};animation.onfinish=clean;animation.oncancel=clean;
   dest.classList.add('landed');setTimeout(()=>dest.classList.remove('landed'),650);
 }
-function moveSound(){let h=game.history.at(-1);tone(game.check()?'check':h?.capture?'capture':'move')}
+function moveSound(){let h=game.history[game.history.length-1];tone(game.check()?'check':h?.capture?'capture':'move')}
 function commit(m){game.move(m);selected=-1;hintSquare=-1;moveSound();render();computer();animateMove(m)}
 $('board').onclick=e=>{void unlockAudio();let el=e.target.closest('[data-i]');if(!playing||!el||busy||(mode==='computer'&&game.turn!==playerColor)||!['playing','check'].includes(game.status()))return;let i=+el.dataset.i,candidates=legal.filter(m=>m.f===selected&&m.t===i);if(candidates.length){if(candidates[0].p){$('choices').innerHTML=candidates.map((m,k)=>`<button data-k="${k}" aria-label="Promote to ${names[m.p]}">${piece(game.turn==='w'?m.p.toUpperCase():m.p)}</button>`).join('');$('choices').onclick=e=>{let b=e.target.closest('[data-k]');if(b){$('promotion').close();commit(candidates[+b.dataset.k])}};$('promotion').showModal()}else commit(candidates[0]);return}selected=side(game.b[i])===game.turn?(i===selected?-1:i):-1;render()};
 const vals={p:100,n:310,b:330,r:500,q:900,k:0};function evaluate(){let v=0;for(let i=0;i<64;i++){let p=game.b[i];if(p==='.')continue;let s=side(p),r=i>>3,c=i%8,center=3.5-Math.abs(c-3.5)+3.5-Math.abs(r-3.5);let bonus=p.toLowerCase()==='p'?(s==='w'?6-r:r-1)*7:center*4;v+=(s===game.turn?1:-1)*(vals[p.toLowerCase()]+bonus)}return v}
@@ -111,7 +111,7 @@ function showScreen(active){
   document.body.classList.toggle('in-game',active);
   $('lobby').hidden=active;$('game-screen').hidden=!active;
   if(!active){document.body.classList.remove('setup-open');$('open-setup').setAttribute('aria-expanded','false');epoch++;clearTimeout(timer);busy=false;selected=-1;render();updateLobby()}
-  window.scrollTo({top:0,behavior:'instant'});
+  window.scrollTo({top:0,behavior:'auto'});
 }
 function renderHomeBoard(){
  const board=initial();let html='<div class="demo-squares">';
@@ -243,7 +243,7 @@ function arrangePlayControls(){
  }
 }
 arrangePlayControls();
-phoneLayout.addEventListener?.('change',arrangePlayControls);
+if(phoneLayout.addEventListener)phoneLayout.addEventListener('change',arrangePlayControls);else if(phoneLayout.addListener)phoneLayout.addListener(arrangePlayControls);
 
 const controlsStrip=document.querySelector('#mobile-controls-strip');
 if(controlsStrip){
@@ -265,14 +265,5 @@ if(controlsStrip){
  document.addEventListener('fullscreenchange',()=>requestAnimationFrame(syncControlArrows));
  syncControlArrows();
 }
-
-$('open-setup').onclick=()=>{
- document.body.classList.add('setup-open');$('open-setup').setAttribute('aria-expanded','true');
- $('computer').focus({preventScroll:true});
- $('setup-panel').scrollIntoView({behavior:matchMedia('(prefers-reduced-motion: reduce)').matches?'auto':'smooth',block:'start'});
-};
-$('close-setup').onclick=()=>{
- document.body.classList.remove('setup-open');$('open-setup').setAttribute('aria-expanded','false');$('open-setup').focus();
-};
 
 $('menu').addEventListener('click',()=>document.body.classList.remove('show-history'));

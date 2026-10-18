@@ -115,3 +115,8 @@ body.in-game .board-frame{transform-origin:50% 50%}
  body.in-game.shared-turn-view .piece-art{transform-box:view-box;transform-origin:50% 50%;transform:rotate(0deg)}
  body.in-game.shared-turn-view.turn-facing-away .piece-art{transform:rotate(180deg)}
 }
+/* Safari versions without native dialog support. */
+dialog.dialog-fallback:not([open]){display:none}
+dialog.dialog-fallback[open]{position:fixed;top:50%;left:50%;right:auto;bottom:auto;transform:translate(-50%,-50%);margin:0;z-index:1001;max-height:calc(100vh - 32px);overflow:auto;box-shadow:0 0 0 100vmax #08243ccc,0 15px 70px #0006}
+body.fallback-modal-open{overflow:hidden}
+#how-to-play.dialog-fallback[open]{max-height:calc(100vh - 32px)}
