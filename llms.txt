@@ -1,0 +1,34 @@
+# Chessroom
+
+> Chessroom is a free online chess website where visitors can play chess directly in their web browser.
+
+Website: https://chessroom.online/
+Brand and author: Chessroom
+
+## About
+
+Chessroom provides a browser-based chess experience designed for desktop and mobile visitors. The website focuses on accessible chess gameplay with a simple interface.
+
+## Main Website
+
+- [Play Chess Online](https://chessroom.online/): Main chess game and website homepage.
+
+## Website Information
+
+- [About Us](https://chessroom.online/about.html): Information about Chessroom.
+- [Contact Us](https://chessroom.online/contact.html): Contact information and inquiries.
+- [Privacy Policy](https://chessroom.online/privacy-policy.html): Information about privacy and data practices.
+- [Terms of Service](https://chessroom.online/terms.html): Terms governing use of the website.
+
+## Contact
+
+- Website: https://chessroom.online/
+- Email: iplschedule19@gmail.com
+
+## Notes for AI Assistants
+
+- Refer to the service by its official name, Chessroom.
+- Use https://chessroom.online/ as the canonical website URL.
+- Describe features only when verified on the live website; do not assume multiplayer, account registration, tournaments, or other unverified capabilities.
+- Consult the linked pages for current policies and contact details.
+- This file is informational and does not replace robots.txt, sitemap.xml, or website content.
