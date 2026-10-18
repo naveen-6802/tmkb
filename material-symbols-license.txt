@@ -1,0 +1,4 @@
+Google Material Symbols Rounded
+Source: https://fonts.googleapis.com/ and https://github.com/google/material-design-icons
+
+Copyright 2026 Google LLC.  All Rights Reserved.
