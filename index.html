@@ -106,6 +106,22 @@
 
             gtag("config", "G-QM45T8DEET");
         </script>
+        <style>
+            /* Homepage additions only — existing styles are untouched. */
+            #chessroom-discover{margin:38px 0 24px;text-shadow:none;color:#e9f3fc;text-align:left}
+            body.in-game #chessroom-discover{display:none!important}
+            #chessroom-discover section{margin:0 0 34px}
+            #chessroom-discover h2{font-size:27px;line-height:1.25;margin:0 0 10px;color:#f0f7ff;letter-spacing:-.5px}
+            #chessroom-discover p{font-size:14px;line-height:1.75;margin:0 0 12px;color:#c4d9ec}
+            #chessroom-discover .cr-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:14px;margin-top:18px}
+            #chessroom-discover .cr-card{display:flex;flex-direction:column;min-width:0;border:1px solid #8aacc9;border-radius:13px;padding:21px;background:linear-gradient(#d2e7f7,#b7d2e8);color:#173e62;box-shadow:inset 0 1px #ffffff80,0 2px 5px #173e6230}
+            #chessroom-discover .cr-card h3{font-size:18px;line-height:1.4;margin:7px 0 9px;color:#173e62}
+            #chessroom-discover .cr-card p{color:#355b7b;font-size:13px;margin:0 0 12px}
+            #chessroom-discover .cr-meta{font-size:11px;color:#416b90;font-weight:600}
+            #chessroom-discover a.cr-read{color:#20558b;font-weight:700;font-size:13px;text-decoration:underline;text-underline-offset:3px;align-self:flex-start;margin-top:auto;padding:5px 0}
+            #chessroom-discover .cr-icon{color:#20558b;font-size:25px}
+            @media(max-width:700px){#chessroom-discover{margin-top:30px}#chessroom-discover .cr-grid{grid-template-columns:1fr;gap:12px}#chessroom-discover h2{font-size:23px}#chessroom-discover .cr-card{padding:17px}body.setup-open #chessroom-discover{display:none}}
+        </style>
     </head>
     <body class="in-menu dark-mode">
         <header>
@@ -277,6 +293,33 @@
                     <blockquote>A good move starts with a little pause.</blockquote>
                 </figure>
             </section>
+            <div id="chessroom-discover">
+                <section aria-labelledby="cr-why-title">
+                    <h2 id="cr-why-title">Why Chessroom?</h2>
+                    <p>A classic chess experience built around the board. No account to create, no download required and no subscription needed to play.</p>
+                    <div class="cr-grid">
+                        <div class="cr-card"><span class="material-symbols-rounded cr-icon" aria-hidden="true">computer</span><h3>Chess against the computer</h3><p>Choose Easy, Medium or Hard and enjoy a match at your own pace. Play as White or Black without waiting for an opponent.</p></div>
+                        <div class="cr-card"><span class="material-symbols-rounded cr-icon" aria-hidden="true">group</span><h3>Two-player chess</h3><p>Share a board with a friend or family member on the same device. A simple option for a quick match together.</p></div>
+                        <div class="cr-card"><span class="material-symbols-rounded cr-icon" aria-hidden="true">history</span><h3>Pick up where you left off</h3><p>Your game is saved in your browser, so you can return to an unfinished match on the same browser and device.</p></div>
+                        <div class="cr-card"><span class="material-symbols-rounded cr-icon" aria-hidden="true">fullscreen</span><h3>A board without distractions</h3><p>Focus on the position with fullscreen mode, move history, board flipping, hints and undo available when you need them.</p></div>
+                    </div>
+                </section>
+                <section aria-labelledby="cr-free-title">
+                    <h2 id="cr-free-title">Free online chess, at your own pace</h2>
+                    <p>Chessroom is a browser-based chess game for moments when you want to concentrate, challenge yourself or spend time with someone. A solo match against the computer offers a different challenge at each difficulty level, while local two-player chess makes it easy to share a game without separate accounts.</p>
+                    <p>Whether you prefer a quick match during a break or a longer game in the evening, you can play on a desktop, tablet or phone. Your saved position lets you continue later rather than having to finish in one sitting.</p>
+                </section>
+                <section aria-labelledby="cr-news-title">
+                    <h2 id="cr-news-title">Latest news &amp; articles</h2>
+                    <p>Explore stories from the world of chess, international championships, player milestones and technology.</p>
+                    <div class="cr-grid">
+                        <article class="cr-card"><div class="cr-meta">Chess News &middot; <time datetime="2026-11-24">24 November 2026</time></div><h3>Gukesh vs Sindarov: World Chess Championship 2026</h3><p>Explore the championship opening, the contenders and the match format.</p><a class="cr-read" href="blog/gukesh-vs-sindarov-world-chess-championship-2026.html" aria-label="Read article: Gukesh vs Sindarov: World Chess Championship 2026">Read article &rarr;</a></article>
+                        <article class="cr-card"><div class="cr-meta">Tech News &middot; <time datetime="2026-11-13">13 November 2026</time></div><h3>Jensen Huang resigns as NVIDIA CEO, Colette Kress takes interim role</h3><p>Read Chessroom’s archived report on the reported leadership transition.</p><a class="cr-read" href="blog/jensen-huang-nvidia-resignation.html" aria-label="Read article: Jensen Huang resigns as NVIDIA CEO, Colette Kress takes interim role">Read article &rarr;</a></article>
+                        <article class="cr-card"><div class="cr-meta">Chess News &middot; <time datetime="2026-11-03">3 November 2026</time></div><h3>Nihal Sarin enters the world top 20</h3><p>A look at the Indian grandmaster’s milestone in the November FIDE ratings.</p><a class="cr-read" href="blog/Nihal-Sarin-enters-the-world-top-20.html" aria-label="Read article: Nihal Sarin enters the world top 20">Read article &rarr;</a></article>
+                        <article class="cr-card"><div class="cr-meta">Chess News &middot; <time datetime="2026-11-03">3 November 2026</time></div><h3>World Senior Chess 2026 in Serbia</h3><p>Explore the international senior chess championship and its participants.</p><a class="cr-read" href="blog/world-senior-chess-2026-serbia.html" aria-label="Read article: World Senior Chess 2026 in Serbia">Read article &rarr;</a></article>
+                    </div>
+                </section>
+            </div>
         </main>
         <footer class="site-footer">
             <nav aria-label="Footer">
